@@ -55,7 +55,7 @@ renters = [
     {
         'name': 'Will Constant',
         'address': '45 Constant View Rd',
-        'city': ' Springfield',
+        'city': 'Springfield',
         'state': 'VA'
     },
 

@@ -125,9 +125,6 @@ class Renter(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'address': self.address,
-            'city': self.city,
-            'state': self.state
         }
 
     def long(self):
