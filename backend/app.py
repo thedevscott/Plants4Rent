@@ -44,13 +44,13 @@ def get_plants():
         abort(404)
 
 
-@app.route('/plants/<int:id>')
-def get_plants_by_id(id):
+@app.route('/plants/<int:plant_id>')
+def get_plants_by_id(plant_id):
     """View selected plant by given id
     :return: JSON with keys: 'success', 'message' & 'plants'
     """
     try:
-        results = Catalog.query.get_or_404(id)
+        results = Catalog.query.get_or_404(plant_id)
 
         return jsonify({
             'success': True,
@@ -61,14 +61,14 @@ def get_plants_by_id(id):
         abort(404)
 
 
-@app.route('/invoice/<int:id>')
+@app.route('/invoice/<int:plant_id>')
 @requires_auth('get:invoice')
-def get_renter_invoice(id):
+def get_renter_invoice(jwt, plant_id):
     """View current invoice for the specified renter
     :return: JSON with keys 'success', 'invoice' & 'total'
     """
     try:
-        results = Rented.query.filter_by(renter_id=id).all()
+        results = Rented.query.filter_by(renter_id=plant_id).all()
 
         if not results:
             return jsonify({
@@ -108,7 +108,7 @@ def get_renter_invoice(id):
 
 @app.route('/rented')
 @requires_auth('get:rented')
-def get_rented_plants():
+def get_rented_plants(jwt):
     """A list of all rented plants and who rented them
     :return: JSON with keys 'success', 'message' & 'data'
     """
@@ -160,7 +160,7 @@ def get_rented_plants():
 
 @app.route('/renters')
 @requires_auth('get:renters')
-def get_renters():
+def get_renters(jwt):
     """View a list of all plant renters
     :return: JSON with keys 'success' & 'data' (id, name, address, city, state)
     """
@@ -185,7 +185,7 @@ def get_renters():
 
 @app.route('/add', methods=['POST'])
 @requires_auth('post:plants')
-def add_plant():
+def add_plant(jwt):
     """Adds a new plant entry to the catalog
     :return: JSON of plant added to DB
     """
@@ -205,15 +205,15 @@ def add_plant():
         abort(422)
 
 
-@app.route('/plants/<int:id>', methods=['PATCH'])
+@app.route('/plants/<int:plant_id>', methods=['PATCH'])
 @requires_auth('patch:plants')
-def update_plant_entry(id):
+def update_plant_entry(jwt, plant_id):
     """Upadte the plant entry by a given ID value
-    :param id: integer id of the plant to update
+    :param plant_id: integer id of the plant to update
     :return: JSON of updated plant
     """
     try:
-        plant = Catalog.query.get_or_404(id)
+        plant = Catalog.query.get_or_404(plant_id)
         plant.name = request.json.get('name')
         plant.description = request.json.get('description')
         plant.quantity = request.json.get('quantity')
@@ -229,21 +229,21 @@ def update_plant_entry(id):
         abort(422)
 
 
-@app.route('/plants/<int:id>', methods=['DELETE'])
+@app.route('/plants/<int:plant_id>', methods=['DELETE'])
 @requires_auth('delete:plants')
-def delete_plant(id):
+def delete_plant(jwt, plant_id):
     """Deletes the plant with the give ID value
-    :param id: integer id for a given plant to be deleted
+    :param plant_id: integer id for a given plant to be deleted
     :return: JSON with keys 'success' & 'id' of deleted plant
     """
     try:
-        plant = Catalog.query.get_or_404(id)
+        plant = Catalog.query.get_or_404(plant_id)
 
         plant.delete()
 
         return jsonify({
             'success': True,
-            'id': id
+            'id': plant_id
         })
     except Exception as e:
         abort(422)
