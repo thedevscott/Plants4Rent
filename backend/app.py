@@ -1,14 +1,20 @@
 from flask import Flask, request, abort, jsonify
-from flask_sqlalchemy import SQLAlchemy
 
+from flask_cors import CORS
 from backend.database.models import Catalog, Renter, Rented, setup_db, \
     db_drop_and_create_all
+from backend.auth.auth import AuthError, requires_auth
 
 app = Flask(__name__)
 setup_db(app)
+CORS(app)
 
 
 # db_drop_and_create_all()
+
+# ----------------------------------------------------------------------------
+# Routes
+# ----------------------------------------------------------------------------
 
 @app.route('/')
 @app.route('/plants')
@@ -34,6 +40,7 @@ def get_plants():
             'plants': None
         })
     except Exception as e:
+        print(str(e))
         abort(404)
 
 
@@ -55,6 +62,7 @@ def get_plants_by_id(id):
 
 
 @app.route('/invoice/<int:id>')
+@requires_auth('get:invoice')
 def get_renter_invoice(id):
     """View current invoice for the specified renter
     :return: JSON with keys 'success', 'invoice' & 'total'
@@ -99,6 +107,7 @@ def get_renter_invoice(id):
 
 
 @app.route('/rented')
+@requires_auth('get:rented')
 def get_rented_plants():
     """A list of all rented plants and who rented them
     :return: JSON with keys 'success', 'message' & 'data'
@@ -150,6 +159,7 @@ def get_rented_plants():
 
 
 @app.route('/renters')
+@requires_auth('get:renters')
 def get_renters():
     """View a list of all plant renters
     :return: JSON with keys 'success' & 'data' (id, name, address, city, state)
@@ -174,6 +184,7 @@ def get_renters():
 
 
 @app.route('/add', methods=['POST'])
+@requires_auth('post:plants')
 def add_plant():
     """Adds a new plant entry to the catalog
     :return: JSON of plant added to DB
@@ -191,10 +202,11 @@ def add_plant():
             'plant': plant.long()
         })
     except Exception as e:
-        abort(404)
+        abort(422)
 
 
 @app.route('/plants/<int:id>', methods=['PATCH'])
+@requires_auth('patch:plants')
 def update_plant_entry(id):
     """Upadte the plant entry by a given ID value
     :param id: integer id of the plant to update
@@ -214,10 +226,11 @@ def update_plant_entry(id):
             'plant': plant.long()
         })
     except Exception as e:
-        abort(404)
+        abort(422)
 
 
 @app.route('/plants/<int:id>', methods=['DELETE'])
+@requires_auth('delete:plants')
 def delete_plant(id):
     """Deletes the plant with the give ID value
     :param id: integer id for a given plant to be deleted
@@ -233,7 +246,48 @@ def delete_plant(id):
             'id': id
         })
     except Exception as e:
-        abort(404)
+        abort(422)
+
+
+# ----------------------------------------------------------------------------
+# Error Handlers
+# ----------------------------------------------------------------------------
+@app.errorhandler(422)
+def unprocessable(error):
+    """Error handling for unprocessable entity
+    :param error: The error object
+    :return JSON indication failure with keys 'success', 'error' & 'message'
+    """
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "unprocessable"
+    }), 422
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """
+    Error handler for 404 HTTP status code
+    :param error: The error object
+    :return: JSON indicating failure 'success' bool, 'error' code & 'message'
+    """
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "resource not found"
+    }), 404
+
+
+@app.errorhandler(AuthError)
+def auth_error(error):
+    """Authorization error handler. Takes AuthErrors and puts them in JSON
+    format
+    :param error: The error object
+    :return JSON with 'code' and 'description' of the authorization error
+    """
+
+    return jsonify(error.error), error.status_code
 
 
 if __name__ == '__main__':

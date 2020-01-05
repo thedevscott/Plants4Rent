@@ -98,7 +98,7 @@ for renter in renters:
 # ---------------------------------------------------------------------------
 # Rent out some plants
 # ---------------------------------------------------------------------------
-for i in range(1, len(renters)):
+for i in range(1, 30):
     plant = Rented(plant_id=random.choice(range(1, len(plants) + 1)),
                    renter_id=random.choice(range(1, len(renters) + 1))
                    )
