@@ -4,13 +4,12 @@ from flask_cors import CORS
 from backend.database.models import Catalog, Renter, Rented, setup_db, \
     db_drop_and_create_all
 from backend.auth.auth import AuthError, requires_auth
+from backend.database.models import database_path
 
 app = Flask(__name__)
-setup_db(app)
+setup_db(app, database_path)
 CORS(app)
 
-
-# db_drop_and_create_all()
 
 # ----------------------------------------------------------------------------
 # Routes
@@ -61,14 +60,14 @@ def get_plants_by_id(plant_id):
         abort(404)
 
 
-@app.route('/invoice/<int:plant_id>')
+@app.route('/invoice/<int:renter_id>')
 @requires_auth('get:invoice')
-def get_renter_invoice(jwt, plant_id):
+def get_renter_invoice(jwt, renter_id):
     """View current invoice for the specified renter
     :return: JSON with keys 'success', 'invoice' & 'total'
     """
     try:
-        results = Rented.query.filter_by(renter_id=plant_id).all()
+        results = Rented.query.filter_by(renter_id=renter_id).all()
 
         if not results:
             return jsonify({
