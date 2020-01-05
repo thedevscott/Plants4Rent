@@ -4,13 +4,9 @@ from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-# AUTH0_DOMAIN = 'udacity-fsnd.auth0.com'
-# ALGORITHMS = ['RS256']
-# API_AUDIENCE = 'dev'
-
 AUTH0_DOMAIN = 'thedevscott.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'localhost:5000'
+API_AUDIENCE = 'rentPlants'
 
 # ---------------------------------------------------------------------------
 # Source: https://github.com/udacity/FSND/blob/master/BasicFlaskAuth/app.py
@@ -167,19 +163,6 @@ def verify_decode_jwt(token):
         'code': 'invalid_header',
         'description': 'Unable to find the appropriate key.'
     }, 400)
-
-
-'''
-@TODO implement @requires_auth(permission) decorator method
-    @INPUTS
-        permission: string permission (i.e. 'post:drink')
-
-    it should use the get_token_auth_header method to get the token
-    it should use the verify_decode_jwt method to decode the jwt
-    it should use the check_permissions method validate claims and check the
-    requested permission return the decorator which passes the decoded
-    payload to the decorated method
-'''
 
 
 def requires_auth(permission=''):
