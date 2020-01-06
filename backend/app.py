@@ -207,7 +207,7 @@ def add_plant(jwt):
 @app.route('/plants/<int:plant_id>', methods=['PATCH'])
 @requires_auth('patch:plants')
 def update_plant_entry(jwt, plant_id):
-    """Upadte the plant entry by a given ID value
+    """Update the plant entry by a given ID value
     :param plant_id: integer id of the plant to update
     :return: JSON of updated plant
     """
