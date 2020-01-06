@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "f22dd512-91c8-4f01-8cce-fab3dc47e788",
+		"name": "plant-rental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "manager",
+			"item": [
+				{
+					"name": "Get plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get plant by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rented plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Renters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Plants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Plants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik16TTNSRVUyUWtVMU56ZEJOMFF4TWtJM1JEazFRMFJFUWpVM1JFVkVRamcwTXpOR016ZERNZyJ9.eyJpc3MiOiJodHRwczovL3RoZWRldnNjb3R0LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTExMGQyM2I2ZmUwMjBlOTkyOTkxYmQiLCJhdWQiOiJyZW50UGxhbnRzIiwiaWF0IjoxNTc4MjY0NTU1LCJleHAiOjE1NzgyNzE3NTUsImF6cCI6IndaZFVwMDl2S2FwY0ZHY2xrczVNWGxidVUwTDgxRjIwIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJkZWxldGU6cGxhbnRzIiwiZ2V0Omludm9pY2UiLCJnZXQ6cmVudGVkIiwiZ2V0OnJlbnRlcnMiLCJwYXRjaDpwbGFudHMiLCJwb3N0OnBsYW50cyJdfQ.S7MBI2i9DtVTIZfhozJyR_mcPj9YbzizM9tK_BJQXmWVmHQVPEK4_LD_aM8XNp3H58qTibQJfwAyNu3525ZxliHgbW9UdQ6b3tfdn7Wac7l4h9427elodHWnEtfvr8RATAMiYtgw7uQMtatmIhVgm9qoDA9o_e_GLgTJ4_ICOG7IxAjyuAqiRdMxhAo_EMUthyaRZ41o0CZi4JFSNuFAxAOawLus4vfiRn3xPC58MEkXktsbMGkTCmGr9XYR8-ZZJXCD_0AWZYvzhPTlwAPSYhaN8sMToDhDpO1s_2BL2HL8i1-k2igcdqsRhF_KcQYZsTxYFbo2tDa2qzy0_mDUGg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9be35684-1df9-4e31-9ff3-8569d07e5859",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "03bd367d-66a3-40b9-a265-8ece7518592a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "renter",
+			"item": [
+				{
+					"name": "Get plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get plant by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rented plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Renters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Plants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Plants",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Water3\",\n    \"recipe\": {\n        \"name\": \"Water\",\n        \"color\": \"blue\",\n        \"parts\": 1\n    }\n}"
+						},
+						"url": {
+							"raw": "{{host}}/add",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"add"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik16TTNSRVUyUWtVMU56ZEJOMFF4TWtJM1JEazFRMFJFUWpVM1JFVkVRamcwTXpOR016ZERNZyJ9.eyJpc3MiOiJodHRwczovL3RoZWRldnNjb3R0LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1ZTExMGQ3ZjFhOWFlNTBlOTI5MzU2NWUiLCJhdWQiOiJyZW50UGxhbnRzIiwiaWF0IjoxNTc4MjY0NjIyLCJleHAiOjE1NzgyNzE4MjIsImF6cCI6IndaZFVwMDl2S2FwY0ZHY2xrczVNWGxidVUwTDgxRjIwIiwic2NvcGUiOiIiLCJwZXJtaXNzaW9ucyI6WyJnZXQ6aW52b2ljZSIsImdldDpyZW50ZWQiXX0.m2iZbEIzNh95P7N55CFHOsUzdXbo39th3SeRt0uVPm5i83bpoTn_8w9QU54AyaC07eOtjJNbahJpa40hWvSwNtmuvXLbeZiX15r0lmzzo3bdssQ23N2TIIUpLMT_1bRkEa9nDrLRti_Ecoy35d8ReC6jmoxPKFX1k-S3VVfFjuDGXhl_qpZ6scTlB0tGnc5B6hCMGIYZgbrRWRLQ-xS6UWLeI3fPV5IXtJO4Nv9mLz8nlXPwzPhzkVHXTtrvDgazAB8CR8vPIltuCTS-5QXIy_KyjCA7-B5UZF7-6nBjg83wfRR-bYJSbyJik3Magnzmv3nlUjs-eIxOPi9upzxUtw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9be35684-1df9-4e31-9ff3-8569d07e5859",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "03bd367d-66a3-40b9-a265-8ece7518592a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2083466b-7a65-4190-b74c-47f8da15e04a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "09293cf7-7663-4504-9ba2-98cb00a52c54",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8efedbaf-8769-46c1-bfc1-04d1eeae0502",
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
