@@ -5,8 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from backend.app import app
 from backend.load_db import go
-from backend.database.models import setup_db, Catalog, Renter, Rented, \
-    db_drop_and_create_all
+from backend.database.models import setup_db, db_drop_and_create_all
 
 
 class PlantRentalTestCase(unittest.TestCase):
@@ -14,18 +13,19 @@ class PlantRentalTestCase(unittest.TestCase):
 
     def setUp(self):
         """Define variables for test and initialize app"""
-        self.renter_token = 'TODO: get from env'
-        self.owner_token = 'TODO: get form env'
+        self.renter_token = os.environ.get('RENTER_TOKEN')
+        self.owner_token = os.environ.get('OWNER_TOKEN')
+        self.database_name = os.environ.get('DATABASE_TEST_NAME')
+        self.database_path = os.environ.get('DATABASE_TEST_PATH')
+
         self.owner_headers = {'Authorization': 'Bearer ' + self.owner_token}
-        self.renter_headers = {'Authorization': 'Bearer ' +
-                                                self.renter_token}
+        self.renter_headers = {'Authorization': 'Bearer ' + self.renter_token}
         self.json_headers = {'Content-Type': 'application/json',
                              'Authorization': 'Bearer ' + self.owner_token}
+
         self.app = app
         self.client = self.app.test_client()
-        self.database_name = 'plant_catalog_test'
-        self.database_path = "postgresql://{}/{}".format('localhost:5432',
-                                                         self.database_name)
+
         setup_db(self.app, self.database_path)
 
         # binds the app to the current context
