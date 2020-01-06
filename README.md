@@ -154,8 +154,8 @@ The `--reload` flag will detect file changes and restart the server automaticall
     - `patch:plants`
     - `delete:plants`
 ### Endpoints
-GET /
-GET /plants
+* GET /
+* GET /plants
     - Description A list of all available plants
     - Permission: None
     - Request Arguments: None
@@ -163,35 +163,35 @@ GET /plants
     - Return: Status code 200 and JSON with keys: 'success', 'message
     ' & 'plants'
     
-GET /plants/<int:id>
+* GET /plants/<int:id>
     - Description: View selected plant by given id
     - Permission: None
     - Request Arguments: integer id value as part of URL
     - Error Codes: 404
     - Return: Status code 200 and JSON with keys: 'success', 'message' & 'plants'
 
-GET /invoice/<int:renter_id>
+* GET /invoice/<int:renter_id>
     - Description: View current invoice for the specified renter by id
     - Permission: 'get:invoice'
     - Request Arguments: renter_id integer value in URL
     - Error Codes: 404, 400, 401, 403
     - Return: Status code 200 and JSON with keys 'success', 'invoice' & 'total'
     
-GET /rented
+* GET /rented
     - Description: A list of all rented plants and who rented them
     - Permission: 'get:rented'
     - Request Arguments: None
     - Error Codes: 404, 400, 401, 403
     - Return: Status code 200 and JSON with keys 'success', 'message' & 'data'
 
-GET /renters
+* GET /renters
     - Description: View a list of all plant renters
     - Permission: 'get:renters'
     - Request Arguments: None
     - Error Codes: 404, 400, 401, 403
     - Return: Status code 200 and JSON with keys 'success' & 'data' (id, name, address, city, state)
 
-POST /add
+* POST /add
     - Description: Adds a new plant entry to the catalog
     - Permission: 'post:plants'
     - Request Arguments: JSON of plant to add with keys 'name', 'description',
@@ -199,7 +199,7 @@ POST /add
     - Error Codes: 422, 400, 401, 403
     - Return: Status code 200 and JSON of plant added to DB
     
-PATCH /plants/<int:plant_id>
+* PATCH /plants/<int:plant_id>
     - Description: Upadte the plant entry by a given ID value
     - Permission: 'patch:plants'
     - Request Arguments: JSON of plant to add with keys 'name', 'description',
@@ -207,7 +207,7 @@ PATCH /plants/<int:plant_id>
     - Error Codes: 422, 400, 401, 403
     - Return: Status code 200 and JSON of updated plant
     
-DELETE /plants/<int:plant_id>
+* DELETE /plants/<int:plant_id>
     - Description: Deletes the plant with the give ID value
     - Permission: 'delete:plants'
     - Request Arguments: plant_id via URL
