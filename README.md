@@ -144,6 +144,49 @@ flask run --reload
 
 The `--reload` flag will detect file changes and restart the server automatically.
 
+## Using Pycharm
+- Install the Community version of [PyCharm](https://www.jetbrains.com/pycharm/download)
+- Download and Unzip this project
+- Open the unzipped project in Pycharm
+- Select and interpreter
+    - Preferences -> Project:plants4rent -> Project Interpreter
+    - Click the gear icon next to the drop down
+    - Click add, a window will open
+    - Click "Pipenv Environment"
+    - Next to 'Base interpreter' select python3.7
+    - Ensure 'Install packages from Pipfile' is checked
+    - Click Ok
+    - Wait for packages to install
+    - Click apply & Click Ok
+ - Edit and Copy the following:
+ ```bash
+FLASK_APP=backend/app.py
+FLASK_ENV=development
+FLASK_DEBUG=1
+AUTH0_DOMAIN=thedevscott.auth0.com
+ALGORITHMS=RS256
+API_AUDIENCE=rentPlants
+DATABASE_NAME=plant_catalog
+DATABASE_HOST=localhost:5432
+DATABASE_PATH=postgres://localhost:5432/plant_catalog
+RENTER_TOKEN=VALID_JWT
+OWNER_TOKEN=VALID_JWT
+DATABASE_TEST_NAME=plant_catalog_test
+DATABASE_TEST_PATH=postgresql://localhost:5432/plant_catalog_test
+```
+
+ - Open app.py
+    - From the menu, click Run and click 'Run app'
+    - Stop the app by clicking the red square
+    - From the menu, click Run -> Edit Configurations
+        - Add the Environment variables by
+            - Clicking the Browse icon next to 'Environment vairables' field
+            - Click the Paste icon to paste the environment variables
+            - Click Apply, Click Ok
+ - Run the app again
+ - Open localhost:5000 in the browser and you should see the plant list
+    - This depends on the database setup step above
+
 ## Deploying
 ## API Docs
 ### Permissions
