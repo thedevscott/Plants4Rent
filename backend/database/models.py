@@ -3,13 +3,8 @@ from sqlalchemy import Column, String, Integer, Float
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-# database_filename = "database.db"
-# project_dir = os.path.dirname(os.path.abspath(__file__))
-# database_path = "sqlite:///{}".format(
-#     os.path.join(project_dir, database_filename))
-
-database_name = 'plant_catalog'
-database_path = "postgres://{}/{}".format('localhost:5432', database_name)
+database_name = os.environ.get('DATABASE_NAME')
+database_path = os.environ.get('DATABASE_PATH')
 
 db = SQLAlchemy()
 
