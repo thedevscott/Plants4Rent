@@ -180,7 +180,7 @@ DATABASE_TEST_PATH=postgresql://localhost:5432/plant_catalog_test
     - Stop the app by clicking the red square
     - From the menu, click Run -> Edit Configurations
         - Add the Environment variables by
-            - Clicking the Browse icon next to 'Environment vairables' field
+            - Clicking the Browse icon next to 'Environment variables' field
             - Click the Paste icon to paste the environment variables
             - Click Apply, Click Ok
  - Run the app again
