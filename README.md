@@ -1,4 +1,4 @@
-Plants4Rent API (Udacity Capstone)
+[Plants4Rent API](https://scott-plants4rent.herokuapp.com/ ) (Udacity Capstone)
 ------------------
 
 ## Introduction
