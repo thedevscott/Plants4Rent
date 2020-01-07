@@ -1,8 +1,7 @@
 from flask import Flask, request, abort, jsonify
 
 from flask_cors import CORS
-from backend.database.models import Catalog, Renter, Rented, setup_db, \
-    db_drop_and_create_all
+from backend.database.models import Catalog, Renter, Rented, setup_db
 from backend.auth.auth import AuthError, requires_auth
 from backend.database.models import database_path
 
@@ -290,4 +289,4 @@ def auth_error(error):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
