@@ -188,6 +188,83 @@ DATABASE_TEST_PATH=postgresql://localhost:5432/plant_catalog_test
     - This depends on the database setup step above
 
 ## Deploying
+
+### Live App Access
+This app is deployed on Heroku at [this](https://scott-plants4rent.herokuapp.com/)
+address. Click [here](https://thedevscott.auth0.com/authorize?audience=rentPlants&response_type=token&client_id=wZdUp09vKapcFGclks5MXlbuU0L81F20&redirect_uri=https://scott-plants4rent.herokuapp.com/)
+ to login/SingUp
+
+### Deploying to Heroku
+- Download and unzip the app
+- Open a terminal and cd to the app's directory
+- Create an account on [Heroku](https://signup.heroku.com/)
+- Install Heroku via [command line](https://devcenter.heroku.com/categories/command-line)
+    ```bash
+    # Mac
+    brew tap heroku/brew && brew install heroku
+    ```
+- Verify install
+    ```bash
+    which heroku
+    ```
+- Login via command line
+    ```bash
+    heroku login
+    ```
+- Create the Heroku app
+    ```bash
+     heroku create <name_of_your_app>
+    ```
+    The output will include a git url for your Heroku application. Copy this as, 
+    we'll use it in a moment.
+
+    Now if you check your Heroku Dashboard in the browser, you'll see an 
+    application by that name. But it doesn't have our code or anything yet - 
+    it's completely empty. Let's get our code up there.
+- Add git remote for Heroku to local repository
+    ```bash
+    remote add heroku <heroku_git_url>
+    ```
+- Create the DB for your app, note the <HEROKU_DB_PATH> for later steps
+    ```bash
+    heroku addons:create heroku-postgresql:hobby-dev --app <your_app_name>
+    ```
+    The app name is the name you used when creating the heroku app.
+    
+    Run 
+    ```bash 
+    heroku config --app <your_app_name>
+    ``` in order to check your configuration variables in Heroku. You will
+   see DATABASE_URL and the URL of the database you just created.
+- Populate the database via [load_db](backend/load_db.py)
+    - Update your DATABASE_PATH to <HEROKU_DB_PATH>, DATABASE_URL from the
+     config
+    - From the Heroku app Setting tab, change DATABASE_URL to DATABASE_PATH
+     as the app is looking for DATABASE_PATH
+    - Run load_db.py go() function to populate the DB
+
+- Setup environment variables
+    * From the Heroku dashboard: 
+        - click your apps name 
+        - click Settings
+        - click Reveal Config Vars
+        
+    * Fill in the following key value pairs with your Auth0 data:
+        ```bash
+        # Example
+        AUTH0_DOMAIN=thedevscott.auth0.com
+        ALGORITHMS=RS256
+        API_AUDIENCE=rentPlants
+        
+        DATABASE_PATH=<HEROKU_DB_PATH>
+        ```
+- Push the app to Heroku
+  ```bash
+    git push heroku master
+    ```
+- Open you app's URL in a browser and you should see the plant list
+  
+
 ## API Docs
 ### Permissions
     - `get:invoice`	
