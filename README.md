@@ -8,8 +8,9 @@ accompanied by a postman_collection for convenience. Note that the
 appropriate [auth0](https://auth0.com/) application and api needs to be setup 
 with the permission mentioned in the "API Docs-Permissions" section.
 
-[Auth0Login](https://thedevscott.auth0.com/authorize?audience=rentPlants&response_type=token&client_id=wZdUp09vKapcFGclks5MXlbuU0L81F20&redirect_uri=http://localhost:5000) for this project
-
+[Auth0 LocalHost Login](https://thedevscott.auth0.com/authorize?audience=rentPlants&response_type=token&client_id=wZdUp09vKapcFGclks5MXlbuU0L81F20&redirect_uri=http://localhost:5000) 
+|
+[Auth0 Live App Login/SignUp](https://thedevscott.auth0.com/authorize?audience=rentPlants&response_type=token&client_id=wZdUp09vKapcFGclks5MXlbuU0L81F20&redirect_uri=https://scott-plants4rent.herokuapp.com/)
 ## Installing Dependencies
 #### Python 3.7
 
@@ -234,7 +235,8 @@ address. Click [here](https://thedevscott.auth0.com/authorize?audience=rentPlant
     Run 
     ```bash 
     heroku config --app <your_app_name>
-    ``` in order to check your configuration variables in Heroku. You will
+    ``` 
+    in order to check your configuration variables in Heroku. You will
    see DATABASE_URL and the URL of the database you just created.
 - Populate the database via [load_db](backend/load_db.py)
     - Update your DATABASE_PATH to <HEROKU_DB_PATH>, DATABASE_URL from the
