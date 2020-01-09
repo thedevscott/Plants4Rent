@@ -26,7 +26,8 @@ def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
 
-
+# TODO: apply Cascades to all models for better data cleanup on delete
+# https://docs.sqlalchemy.org/en/13/orm/cascades.html
 class Catalog(db.Model):
     """A persistent plant 'catalog' entity.
     Extends the base SQLAlchemy Model
